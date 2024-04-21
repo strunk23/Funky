@@ -1,3 +1,7 @@
 {
+  "item.funkymod.example": "Example",
 
+  "block.funkymod.example_block": "Example Block",
+
+  "creativetab.funky_mod_tab": "Funky Mod"
 }

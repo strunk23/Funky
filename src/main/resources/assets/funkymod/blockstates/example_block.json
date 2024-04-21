@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "funkymod:block/example_block"
+    }
+  }
+}
