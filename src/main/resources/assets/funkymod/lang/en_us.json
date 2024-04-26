@@ -2,6 +2,7 @@
   "item.funkymod.example": "Example",
 
   "block.funkymod.example_block": "Example Block",
+  "block.funkymod.particle_block": "Particle Block",
 
   "creativetab.funky_mod_tab": "Funky Mod"
 }

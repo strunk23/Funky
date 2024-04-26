@@ -11,6 +11,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.strunk.funkymod.FunkyMod;
+import net.strunk.funkymod.block.custom.ParticleBlock;
 import net.strunk.funkymod.item.FunkyModItems;
 
 import java.util.function.Supplier;
@@ -22,6 +23,9 @@ public class FunkyModBlocks {
 
     public static final RegistryObject<Block> EXAMPLE_BLOCK = registerBlock("example_block",
             () -> new Block(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(SoundType.AMETHYST)));
+
+    public static final RegistryObject<Block> PARTICLE_BLOCK = registerBlock("particle_block",
+            () -> new ParticleBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(SoundType.WOOD)));
 
 
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block) {

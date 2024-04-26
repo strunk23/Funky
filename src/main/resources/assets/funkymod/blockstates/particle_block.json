@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "funkymod:block/particle_block"
+    }
+  }
+}

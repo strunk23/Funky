@@ -20,6 +20,7 @@ public class FunkyModCreativeTab {
                     .displayItems((pParameters, pOutput) -> {
                         pOutput.accept(FunkyModItems.EXAMPLE.get());
                         pOutput.accept(FunkyModBlocks.EXAMPLE_BLOCK.get());
+                        pOutput.accept(FunkyModBlocks.PARTICLE_BLOCK.get());
                     })
                     .build());
 
