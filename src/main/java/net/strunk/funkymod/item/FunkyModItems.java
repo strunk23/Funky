@@ -15,6 +15,9 @@ public class FunkyModItems {
     public static final RegistryObject<Item> EXAMPLE = ITEMS.register("example",
             () -> new Item(new Item.Properties()));
 
+    public static final RegistryObject<Item> PHONE = ITEMS.register("phone",
+            () -> new Item(new Item.Properties()));
+
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
     }

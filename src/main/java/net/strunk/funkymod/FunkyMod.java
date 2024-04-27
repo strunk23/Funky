@@ -12,6 +12,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.strunk.funkymod.block.FunkyModBlocks;
 import net.strunk.funkymod.item.FunkyModCreativeTab;
 import net.strunk.funkymod.item.FunkyModItems;
+import net.strunk.funkymod.sound.FunkySounds;
 
 @Mod(FunkyMod.MOD_ID)
 public class FunkyMod {
@@ -22,6 +23,7 @@ public class FunkyMod {
 
         FunkyModItems.register(modEventBus);
         FunkyModBlocks.register(modEventBus);
+        FunkySounds.register(modEventBus);
         FunkyModCreativeTab.register(modEventBus);
 
         modEventBus.addListener(this::commonSetup);

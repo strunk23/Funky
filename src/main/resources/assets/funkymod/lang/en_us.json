@@ -1,8 +1,11 @@
 {
   "item.funkymod.example": "Example",
+  "item.funkymod.phone": "Phone",
 
   "block.funkymod.example_block": "Example Block",
   "block.funkymod.particle_block": "Particle Block",
+
+  "sounds.funkymod.gps_sound": "GPS Sound",
 
   "creativetab.funky_mod_tab": "Funky Mod"
 }

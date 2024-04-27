@@ -1,0 +1,8 @@
+{
+  "gps_sound": {
+    "subtitles": "sounds.funkymod.gps_sound",
+    "sounds": [
+      "funkymod:gps_sound"
+    ]
+  }
+}

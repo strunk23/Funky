@@ -19,6 +19,7 @@ public class FunkyModCreativeTab {
                     .title(Component.translatable("creativetab.funky_mod_tab"))
                     .displayItems((pParameters, pOutput) -> {
                         pOutput.accept(FunkyModItems.EXAMPLE.get());
+                        pOutput.accept(FunkyModItems.PHONE.get());
                         pOutput.accept(FunkyModBlocks.EXAMPLE_BLOCK.get());
                         pOutput.accept(FunkyModBlocks.PARTICLE_BLOCK.get());
                     })
