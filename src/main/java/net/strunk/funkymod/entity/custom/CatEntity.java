@@ -17,6 +17,7 @@ import net.strunk.funkymod.item.FunkyModItems;
 import org.jetbrains.annotations.Nullable;
 
 public class CatEntity extends Animal {
+    public static boolean hasSpawnedCat = false;
     public CatEntity(EntityType<? extends Animal> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
     }
@@ -24,7 +25,7 @@ public class CatEntity extends Animal {
     @Override
     protected void registerGoals() {
         this.goalSelector.addGoal(0, new FloatGoal(this));
-        this.goalSelector.addGoal(1, new LookAtPlayerGoal(this, Player.class, 60.0f));
+        this.goalSelector.addGoal(0, new LookAtPlayerGoal(this, Player.class, 6.0f));
     }
 
     public static AttributeSupplier.Builder createAttributes() {
@@ -37,13 +38,5 @@ public class CatEntity extends Animal {
     @Override
     public AgeableMob getBreedOffspring(ServerLevel pLevel, AgeableMob pOtherParent) {
         return null;
-    }
-
-    @Override
-    public InteractionResult interactAt(Player pPlayer, Vec3 pVec, InteractionHand pHand) {
-        if (pPlayer.getUseItem().getItem().equals(FunkyModItems.EXAMPLE.get())) {
-
-        }
-        return super.interactAt(pPlayer, pVec, pHand);
     }
 }

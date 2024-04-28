@@ -3,16 +3,27 @@ package net.strunk.funkymod.event;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.animal.Cat;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.strunk.funkymod.FunkyMod;
+import net.strunk.funkymod.entity.FunkyEntities;
+import net.strunk.funkymod.entity.client.CatCustom;
 import net.strunk.funkymod.entity.custom.CatEntity;
 import net.strunk.funkymod.sound.FunkySounds;
 
+import java.util.Objects;
+
 @Mod.EventBusSubscriber(modid = FunkyMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class FunkyEvents {
+
+    private static Entity swappedEntity = null;
+
     @SubscribeEvent
     public static void playPhoneSound(PlayerInteractEvent.RightClickItem event) {
         if (event.getItemStack().getItem().toString().equals("phone")) {
@@ -49,5 +60,55 @@ public class FunkyEvents {
                 );
             }
         }
+    }
+
+    @SubscribeEvent
+    public static void spawnCustomCat(PlayerInteractEvent.EntityInteractSpecific event) {
+        Entity target = event.getTarget();
+        Player player = target.level().getNearestPlayer(target, 5);
+        Level level = target.getCommandSenderWorld();
+
+        if (target instanceof Cat) {
+            assert player != null;
+            if (player.getMainHandItem().getItem().equals(Items.APPLE)) {
+                spawnNewCustomCat(level, target.getX(), target.getY(), target.getZ());
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public static void despawnCustomCat(PlayerInteractEvent.EntityInteractSpecific event) {
+        Entity target = event.getTarget();
+        Player player = target.level().getNearestPlayer(target, 5);
+        Level level = target.getCommandSenderWorld();
+        if (target instanceof CatEntity && !CatEntity.hasSpawnedCat) {
+            assert player != null;
+            if (player.getMainHandItem().getItem().toString().equals("air")) {
+                spawnNewCat(level, target.getX(), target.getY(), target.getZ());
+                CatEntity.hasSpawnedCat = true;
+            }
+        }
+    }
+
+    private static Entity spawnNewCustomCat(Level level, double x, double y, double z) {
+        EntityType<CatEntity> newCat = FunkyEntities.CAT_CUSTOM.get();
+        CatEntity cat = newCat.create(level);
+        if (cat != null) {
+            cat.setPos(x, y, z);
+            level.addFreshEntity(cat);
+            return cat;
+        }
+        return null;
+    }
+
+    private static Entity spawnNewCat(Level level, double x, double y, double z) {
+        EntityType<Cat> newCat = EntityType.CAT;
+        Cat cat = newCat.create(level);
+        if (cat != null) {
+            cat.setPos(x, y, z);
+            level.addFreshEntity(cat);
+            return cat;
+        }
+        return null;
     }
 }
