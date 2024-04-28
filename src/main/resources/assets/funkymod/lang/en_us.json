@@ -1,6 +1,7 @@
 {
   "item.funkymod.example": "Example",
   "item.funkymod.phone": "Phone",
+  "item.funkymod.spoon": "Spoon",
 
   "block.funkymod.example_block": "Example Block",
   "block.funkymod.particle_block": "Particle Block",

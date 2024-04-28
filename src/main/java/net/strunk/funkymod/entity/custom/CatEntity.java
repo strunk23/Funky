@@ -1,6 +1,8 @@
 package net.strunk.funkymod.entity.custom;
 
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
@@ -10,6 +12,8 @@ import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.Vec3;
+import net.strunk.funkymod.item.FunkyModItems;
 import org.jetbrains.annotations.Nullable;
 
 public class CatEntity extends Animal {
@@ -33,5 +37,13 @@ public class CatEntity extends Animal {
     @Override
     public AgeableMob getBreedOffspring(ServerLevel pLevel, AgeableMob pOtherParent) {
         return null;
+    }
+
+    @Override
+    public InteractionResult interactAt(Player pPlayer, Vec3 pVec, InteractionHand pHand) {
+        if (pPlayer.getUseItem().getItem().equals(FunkyModItems.EXAMPLE.get())) {
+
+        }
+        return super.interactAt(pPlayer, pVec, pHand);
     }
 }
