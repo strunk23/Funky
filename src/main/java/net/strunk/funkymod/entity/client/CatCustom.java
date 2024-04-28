@@ -21,17 +21,27 @@ public class CatCustom<T extends Entity> extends HierarchicalModel<T> {
 
 		PartDefinition cat = partdefinition.addOrReplaceChild("cat", CubeListBuilder.create(), PartPose.offset(0.0F, 24.0F, 0.0F));
 
-		PartDefinition tail2 = cat.addOrReplaceChild("tail2", CubeListBuilder.create().texOffs(4, 15).addBox(-0.5F, 0.0F, -4.0F, 1.0F, 8.0F, 1.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, -8.5F, 16.0F, 1.5708F, 0.0F, 0.0F));
+		PartDefinition tail2 = cat.addOrReplaceChild("tail2", CubeListBuilder.create().texOffs(4, 15).addBox(-0.5F, -1.0F, -8.0F, 1.0F, 8.0F, 1.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, -8.5F, 16.0F, 1.5708F, 0.0F, 0.0F));
 
-		PartDefinition tail = cat.addOrReplaceChild("tail", CubeListBuilder.create().texOffs(0, 15).addBox(-0.5F, 0.0F, -4.0F, 1.0F, 8.0F, 1.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, -8.5F, 8.0F, 1.5708F, 0.0F, 0.0F));
+		PartDefinition tail = cat.addOrReplaceChild("tail", CubeListBuilder.create(), PartPose.offsetAndRotation(0.0F, -8.5F, 8.0F, 1.5708F, 0.0F, 0.0F));
 
-		PartDefinition front_right_leg = cat.addOrReplaceChild("front_right_leg", CubeListBuilder.create().texOffs(40, 0).addBox(-4.0F, 0.0F, 0.0F, 2.0F, 10.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(-1.1F, -9.9F, -5.0F));
+		PartDefinition tail_r1 = tail.addOrReplaceChild("tail_r1", CubeListBuilder.create().texOffs(0, 15).addBox(-0.5F, -9.5F, -1.0F, 1.0F, 8.0F, 1.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 8.5F, -8.0F, -0.5672F, 0.0F, 0.0F));
 
-		PartDefinition back_left_leg = cat.addOrReplaceChild("back_left_leg", CubeListBuilder.create().texOffs(8, 13).addBox(2.0F, 0.0F, 1.0F, 2.0F, 6.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(1.1F, -6.0F, 5.0F));
+		PartDefinition front_right_leg = cat.addOrReplaceChild("front_right_leg", CubeListBuilder.create(), PartPose.offset(-1.1F, -9.9F, -5.0F));
 
-		PartDefinition back_right_leg = cat.addOrReplaceChild("back_right_leg", CubeListBuilder.create().texOffs(8, 13).addBox(-4.0F, 0.0F, 1.0F, 2.0F, 6.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(-1.1F, -6.0F, 5.0F));
+		PartDefinition front_right_leg_r1 = front_right_leg.addOrReplaceChild("front_right_leg_r1", CubeListBuilder.create().texOffs(40, 0).addBox(-4.1F, -11.9F, 0.0F, 2.0F, 10.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.1F, 9.9F, 5.0F, 1.5708F, -0.0873F, 0.0F));
 
-		PartDefinition front_left_leg = cat.addOrReplaceChild("front_left_leg", CubeListBuilder.create().texOffs(40, 0).addBox(2.0F, 0.0F, 0.0F, 2.0F, 10.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(1.1F, -9.9F, -5.0F));
+		PartDefinition back_left_leg = cat.addOrReplaceChild("back_left_leg", CubeListBuilder.create(), PartPose.offset(1.1F, -6.0F, 5.0F));
+
+		PartDefinition back_left_leg_r1 = back_left_leg.addOrReplaceChild("back_left_leg_r1", CubeListBuilder.create().texOffs(8, 13).addBox(3.1F, -8.0F, -2.0F, 2.0F, 6.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-1.1F, 6.0F, -5.0F, -1.5708F, -0.3491F, 0.0F));
+
+		PartDefinition back_right_leg = cat.addOrReplaceChild("back_right_leg", CubeListBuilder.create(), PartPose.offset(-1.1F, -6.0F, 5.0F));
+
+		PartDefinition back_right_leg_r1 = back_right_leg.addOrReplaceChild("back_right_leg_r1", CubeListBuilder.create().texOffs(8, 13).addBox(-5.1F, -8.0F, -2.0F, 2.0F, 6.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.1F, 6.0F, -5.0F, -1.5708F, 0.3491F, 0.0F));
+
+		PartDefinition front_left_leg = cat.addOrReplaceChild("front_left_leg", CubeListBuilder.create(), PartPose.offset(1.1F, -9.9F, -5.0F));
+
+		PartDefinition front_left_leg_r1 = front_left_leg.addOrReplaceChild("front_left_leg_r1", CubeListBuilder.create().texOffs(40, 0).addBox(2.1F, -11.9F, 0.0F, 2.0F, 10.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-1.1F, 9.9F, 5.0F, 1.5708F, 0.0873F, 0.0F));
 
 		PartDefinition body = cat.addOrReplaceChild("body", CubeListBuilder.create().texOffs(20, 0).addBox(-2.0F, 3.0F, -12.0F, 4.0F, 16.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, -12.0F, -10.0F, 1.5708F, 0.0F, 0.0F));
 
@@ -39,6 +49,8 @@ public class CatCustom<T extends Entity> extends HierarchicalModel<T> {
 		.texOffs(0, 24).addBox(-1.5F, 3.98F, -4.0F, 3.0F, 2.0F, 2.0F, new CubeDeformation(0.0F))
 		.texOffs(0, 10).addBox(-2.0F, 1.0F, 0.0F, 1.0F, 1.0F, 2.0F, new CubeDeformation(0.0F))
 		.texOffs(6, 10).addBox(1.0F, 1.0F, 0.0F, 1.0F, 1.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -9.0F, -9.0F));
+
+		PartDefinition apple = cat.addOrReplaceChild("apple", CubeListBuilder.create().texOffs(38, 21).addBox(-2.0F, -3.0F, -13.0F, 4.0F, 3.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 0.0F, 0.0F));
 
 		return LayerDefinition.create(meshdefinition, 64, 32);
 	}
@@ -55,6 +67,6 @@ public class CatCustom<T extends Entity> extends HierarchicalModel<T> {
 
 	@Override
 	public ModelPart root() {
-		return cat;
+		return null;
 	}
 }

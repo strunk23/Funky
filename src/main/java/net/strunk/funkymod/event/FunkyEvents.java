@@ -25,4 +25,9 @@ public class FunkyEvents {
             );
         }
     }
+
+    @SubscribeEvent
+    public static void interactCustomCat(PlayerInteractEvent.EntityInteract event) {
+        System.out.println(event.getEntity());
+    }
 }
