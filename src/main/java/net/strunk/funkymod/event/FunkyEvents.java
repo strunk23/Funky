@@ -11,9 +11,7 @@ import net.strunk.funkymod.sound.FunkySounds;
 public class FunkyEvents {
     @SubscribeEvent
     public static void playPhoneSound(PlayerInteractEvent.RightClickItem event) {
-        System.out.println(event.getItemStack().getItem().toString());
         if (event.getItemStack().getItem().toString().equals("phone")) {
-            System.out.println("works");
             event.getLevel().playSeededSound(
                     null,
                     event.getPos().getX(),
@@ -28,17 +26,3 @@ public class FunkyEvents {
         }
     }
 }
-
-/*
-event.getLevel().playSeededSound(
-                    null,
-                    positionClicked.getX(),
-                    positionClicked.getY(),
-                    positionClicked.getZ(),
-                    FunkySounds.GPS_SOUND.get(),
-                    SoundSource.PLAYERS,
-                    1f,
-                    1f,
-                    0
-            );
- */
