@@ -8,6 +8,7 @@ import net.minecraft.world.entity.animal.Cat;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -67,11 +68,10 @@ public class FunkyEvents {
         Entity target = event.getTarget();
         Player player = target.level().getNearestPlayer(target, 5);
         Level level = target.getCommandSenderWorld();
-
         if (target instanceof Cat) {
             assert player != null;
             if (player.getMainHandItem().getItem().equals(Items.APPLE)) {
-                spawnNewCustomCat(level, target.getX(), target.getY(), target.getZ());
+                replaceCat(level, target, target.getX(), target.getY(), target.getZ());
             }
         }
     }
@@ -81,16 +81,16 @@ public class FunkyEvents {
         Entity target = event.getTarget();
         Player player = target.level().getNearestPlayer(target, 5);
         Level level = target.getCommandSenderWorld();
-        if (target instanceof CatEntity && !CatEntity.hasSpawnedCat) {
+        if (target instanceof CatEntity) {
             assert player != null;
             if (player.getMainHandItem().getItem().toString().equals("air")) {
-                spawnNewCat(level, target.getX(), target.getY(), target.getZ());
-                CatEntity.hasSpawnedCat = true;
+                replaceCatCustom(level, target, target.getX(), target.getY(), target.getZ());
             }
         }
     }
 
-    private static Entity spawnNewCustomCat(Level level, double x, double y, double z) {
+    private static Entity replaceCat(Level level, Entity entity, double x, double y, double z) {
+        entity.remove(Entity.RemovalReason.CHANGED_DIMENSION);
         EntityType<CatEntity> newCat = FunkyEntities.CAT_CUSTOM.get();
         CatEntity cat = newCat.create(level);
         if (cat != null) {
@@ -101,7 +101,8 @@ public class FunkyEvents {
         return null;
     }
 
-    private static Entity spawnNewCat(Level level, double x, double y, double z) {
+    private static Entity replaceCatCustom(Level level, Entity entity, double x, double y, double z) {
+        entity.remove(Entity.RemovalReason.CHANGED_DIMENSION);
         EntityType<Cat> newCat = EntityType.CAT;
         Cat cat = newCat.create(level);
         if (cat != null) {

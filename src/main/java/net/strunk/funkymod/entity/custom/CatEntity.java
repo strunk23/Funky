@@ -17,7 +17,6 @@ import net.strunk.funkymod.item.FunkyModItems;
 import org.jetbrains.annotations.Nullable;
 
 public class CatEntity extends Animal {
-    public static boolean hasSpawnedCat = false;
     public CatEntity(EntityType<? extends Animal> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
     }
