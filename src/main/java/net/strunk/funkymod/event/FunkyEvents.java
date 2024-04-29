@@ -1,16 +1,15 @@
 package net.strunk.funkymod.event;
 
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.data.tags.CatVariantTagsProvider;
-import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.animal.Cat;
 import net.minecraft.world.entity.animal.CatVariant;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
@@ -69,10 +68,11 @@ public class FunkyEvents {
         Entity target = event.getTarget();
         Player player = target.level().getNearestPlayer(target, 5);
         Level level = target.getCommandSenderWorld();
-        if (target instanceof Cat) {
+        if (target instanceof Cat && ((Cat) target).getVariant().toString().equals("CatVariant[texture=minecraft:textures/entity/cat/white.png]")) {
             assert player != null;
             if (player.getMainHandItem().getItem().equals(Items.APPLE)) {
                 replaceCat(level, target, target.getX(), target.getY(), target.getZ());
+                player.setItemInHand(InteractionHand.MAIN_HAND, ItemStack.EMPTY);
             }
         }
     }
@@ -86,6 +86,7 @@ public class FunkyEvents {
             assert player != null;
             if (player.getMainHandItem().getItem().toString().equals("air")) {
                 replaceCatCustom(level, target, target.getX(), target.getY(), target.getZ());
+                player.setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(Items.APPLE));
             }
         }
     }
@@ -112,9 +113,6 @@ public class FunkyEvents {
             level.addFreshEntity(cat);
             return cat;
         }
-
-        //
-        ; //.setVariant(variant);
         return null;
     }
 }
