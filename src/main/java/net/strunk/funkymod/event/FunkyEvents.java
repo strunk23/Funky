@@ -12,6 +12,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -62,7 +63,6 @@ public class FunkyEvents {
             }
         }
     }
-
     @SubscribeEvent
     public static void spawnCustomCat(PlayerInteractEvent.EntityInteractSpecific event) {
         Entity target = event.getTarget();
@@ -72,7 +72,6 @@ public class FunkyEvents {
             assert player != null;
             if (player.getMainHandItem().getItem().equals(Items.APPLE)) {
                 replaceCat(level, target, target.getX(), target.getY(), target.getZ());
-                player.setItemInHand(InteractionHand.MAIN_HAND, ItemStack.EMPTY);
             }
         }
     }
