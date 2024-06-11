@@ -1,9 +1,6 @@
 package net.strunk.funkymod;
 
 import net.minecraft.client.renderer.entity.EntityRenderers;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.MobCategory;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
@@ -15,14 +12,9 @@ import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegisterEvent;
-import net.minecraftforge.registries.RegistryObject;
 import net.strunk.funkymod.block.FunkyModBlocks;
 import net.strunk.funkymod.entity.FunkyEntities;
 import net.strunk.funkymod.entity.client.CatRenderer;
-import net.strunk.funkymod.entity.custom.CatOverride;
 import net.strunk.funkymod.item.FunkyModCreativeTab;
 import net.strunk.funkymod.item.FunkyModItems;
 import net.strunk.funkymod.sound.FunkySounds;

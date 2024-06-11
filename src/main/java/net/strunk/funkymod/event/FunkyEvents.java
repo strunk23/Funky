@@ -39,23 +39,6 @@ import java.util.Objects;
 public class FunkyEvents {
 
     @SubscribeEvent
-    public static void playPhoneSound(PlayerInteractEvent.RightClickItem event) {
-        if (event.getItemStack().getItem().toString().equals("phone")) {
-            event.getLevel().playSeededSound(
-                    null,
-                    event.getPos().getX(),
-                    event.getPos().getY(),
-                    event.getPos().getZ(),
-                    FunkySounds.GPS_SOUND.get(),
-                    SoundSource.PLAYERS,
-                    1.0f,
-                    1.0f,
-                    0
-            );
-        }
-    }
-
-    @SubscribeEvent
     public static void playCatSound(PlayerInteractEvent.EntityInteractSpecific event) {
         Entity target = event.getTarget();
         Player player = target.level().getNearestPlayer(target, 5);

@@ -39,25 +39,7 @@ public class SpoonItem extends Item {
                     0.0d,
                     0.0d,
                     0.0d);
-            /*
-            FallingBlockEntity fallingBlock = FallingBlockEntity.fall(level, pos, state);
-            fallingBlock.setPos(x + 0.5, y, z + 0.5);
-            fallingBlock.setDeltaMovement(0, 1, 0);
-            level.addFreshEntity(fallingBlock);
-
-             */
         }
-        /*
-        FallingBlockEntity fallingBlock = FallingBlockEntity.fall(level, pos, state);
-        //FallingBlockEntity fallingBlock = EntityType.FALLING_BLOCK.create(level);
-        //FallingBlockEntity fallingBlock = EntityType.FALLING_BLOCK.spawn(serverLevel, pos, type);
-        //assert fallingBlock != null;
-        fallingBlock.setPos(pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5);
-        //fallingBlock.setHurtsEntities(3, 30);
-        fallingBlock.setDeltaMovement(0, 1, 1);
-        level.addFreshEntity(fallingBlock);
-         */
-
         return super.useOn(pContext);
     }
 }
