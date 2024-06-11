@@ -6,6 +6,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.strunk.funkymod.FunkyMod;
+import net.strunk.funkymod.item.custom.SpoonItem;
 
 public class FunkyModItems {
 
@@ -19,7 +20,7 @@ public class FunkyModItems {
             () -> new Item(new Item.Properties()));
 
     public static final RegistryObject<Item> SPOON = ITEMS.register("spoon",
-            () -> new Item(new Item.Properties()));
+            () -> new SpoonItem(new Item.Properties()));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

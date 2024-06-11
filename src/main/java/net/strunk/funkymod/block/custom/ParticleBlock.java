@@ -12,6 +12,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
+import net.strunk.funkymod.item.FunkyModItems;
 import org.jetbrains.annotations.Nullable;
 
 public class ParticleBlock extends Block {
@@ -35,6 +36,10 @@ public class ParticleBlock extends Block {
 
     @Override
     public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
+        if (pPlayer.getMainHandItem().getItem().toString().equals("spoon")) {
+            //pLevel.removeBlock(pPos, false);
+
+        }
         pPlayer.playSound(
                 SoundEvents.NOTE_BLOCK_BIT.get(),
                 1f,

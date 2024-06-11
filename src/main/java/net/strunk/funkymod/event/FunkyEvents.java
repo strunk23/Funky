@@ -1,24 +1,36 @@
 package net.strunk.funkymod.event;
 
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.animal.Bee;
 import net.minecraft.world.entity.animal.Cat;
 import net.minecraft.world.entity.animal.CatVariant;
+import net.minecraft.world.entity.item.FallingBlockEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.FallingBlock;
+import net.minecraft.world.level.block.SandBlock;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.strunk.funkymod.FunkyMod;
+import net.strunk.funkymod.block.FunkyModBlocks;
+import net.strunk.funkymod.block.custom.ParticleBlock;
 import net.strunk.funkymod.entity.FunkyEntities;
 import net.strunk.funkymod.entity.custom.CatEntity;
+import net.strunk.funkymod.item.FunkyModItems;
 import net.strunk.funkymod.sound.FunkySounds;
 
 import java.util.Objects;
@@ -42,6 +54,7 @@ public class FunkyEvents {
             );
         }
     }
+
     @SubscribeEvent
     public static void playCatSound(PlayerInteractEvent.EntityInteractSpecific event) {
         Entity target = event.getTarget();
@@ -62,56 +75,5 @@ public class FunkyEvents {
                 );
             }
         }
-    }
-    @SubscribeEvent
-    public static void spawnCustomCat(PlayerInteractEvent.EntityInteractSpecific event) {
-        Entity target = event.getTarget();
-        Player player = target.level().getNearestPlayer(target, 5);
-        Level level = target.getCommandSenderWorld();
-        if (target instanceof Cat && ((Cat) target).getVariant().toString().equals("CatVariant[texture=minecraft:textures/entity/cat/white.png]")) {
-            assert player != null;
-            if (player.getMainHandItem().getItem().equals(Items.APPLE)) {
-                replaceCat(level, target, target.getX(), target.getY(), target.getZ());
-            }
-        }
-    }
-
-    @SubscribeEvent
-    public static void despawnCustomCat(PlayerInteractEvent.EntityInteractSpecific event) {
-        Entity target = event.getTarget();
-        Player player = target.level().getNearestPlayer(target, 5);
-        Level level = target.getCommandSenderWorld();
-        if (target instanceof CatEntity) {
-            assert player != null;
-            if (player.getMainHandItem().getItem().toString().equals("air")) {
-                replaceCatCustom(level, target, target.getX(), target.getY(), target.getZ());
-                player.setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(Items.APPLE));
-            }
-        }
-    }
-
-    private static Entity replaceCat(Level level, Entity entity, double x, double y, double z) {
-        entity.remove(Entity.RemovalReason.CHANGED_DIMENSION);
-        EntityType<CatEntity> newCat = FunkyEntities.CAT_CUSTOM.get();
-        CatEntity cat = newCat.create(level);
-        if (cat != null) {
-            cat.setPos(x, y, z);
-            level.addFreshEntity(cat);
-            return cat;
-        }
-        return null;
-    }
-
-    private static Entity replaceCatCustom(Level level, Entity entity, double x, double y, double z) {
-        entity.remove(Entity.RemovalReason.CHANGED_DIMENSION);
-        EntityType<Cat> newCat = EntityType.CAT;
-        Cat cat = newCat.create(level);
-        if (cat != null) {
-            cat.setVariant(Objects.requireNonNull(BuiltInRegistries.CAT_VARIANT.get(CatVariant.WHITE)));
-            cat.setPos(x, y, z);
-            level.addFreshEntity(cat);
-            return cat;
-        }
-        return null;
     }
 }
