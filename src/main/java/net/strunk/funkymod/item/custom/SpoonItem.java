@@ -27,10 +27,10 @@ public class SpoonItem extends Item {
         BlockPos pos = pContext.getClickedPos();
 
         level.removeBlock(pos, false);
-        for (int i = 0; i < 40; i++) {
-            double angle = 2 * Math.PI * i / 40;
-            double x = pos.getX() + (3 * Math.cos(angle));
-            double z = pos.getZ() + (3 * Math.sin(angle));
+        for (int i = 0; i < 30; i++) {
+            double angle = 2 * Math.PI * i / 30;
+            double x = pos.getX() + (2 * Math.cos(angle));
+            double z = pos.getZ() + (2 * Math.sin(angle));
             int y = pos.getY();
             level.addParticle(ParticleTypes.NOTE,
                     x + 0.5,

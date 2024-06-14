@@ -16,31 +16,25 @@ import net.strunk.funkymod.entity.custom.CatEntity;
 
 @Mod.EventBusSubscriber(modid = FunkyMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class WhiteCatInteractionEvent {
-
-    //public static CatVariant catVariant;
-
     @SubscribeEvent
     public static void onPlayerInteract(PlayerInteractEvent.EntityInteractSpecific event) {
         Entity entity = event.getTarget();
         Level level = event.getLevel();
         ItemStack item = event.getItemStack();
 
-        if (entity instanceof Cat && item.getItem().toString().equals("apple")) {
-            //catVariant = ((Cat) entity).getVariant();
+        if (entity instanceof Cat && item.getItem().toString().equals("apple") && ((Cat) entity).getVariant().equals(BuiltInRegistries.CAT_VARIANT.get(CatVariant.WHITE))) {
             spawnCustomCat(level, entity, entity.getX(), entity.getY(), entity.getZ());
             item.shrink(1);
         }
     }
 
-    private static Entity spawnCustomCat(Level level, Entity entity, double x, double y, double z) {
+    private static void spawnCustomCat(Level level, Entity entity, double x, double y, double z) {
         entity.remove(Entity.RemovalReason.CHANGED_DIMENSION);
         EntityType<CatEntity> newCat = FunkyEntities.CAT_CUSTOM.get();
         CatEntity cat = newCat.create(level);
         if (cat != null) {
             cat.setPos(x, y, z);
             level.addFreshEntity(cat);
-            return cat;
         }
-        return null;
     }
 }

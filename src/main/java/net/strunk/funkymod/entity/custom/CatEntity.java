@@ -6,9 +6,7 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.FloatGoal;
@@ -20,7 +18,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
-import net.strunk.funkymod.event.WhiteCatInteractionEvent;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Objects;
@@ -44,7 +42,7 @@ public class CatEntity extends Mob {
 
     @Nullable
     @Override
-    protected SoundEvent getHurtSound(DamageSource pDamageSource) {
+    protected SoundEvent getHurtSound(@NotNull DamageSource pDamageSource) {
         return SoundEvents.CAT_HURT;
     }
 
@@ -55,7 +53,7 @@ public class CatEntity extends Mob {
     }
 
     @Override
-    protected void dropCustomDeathLoot(DamageSource pSource, int pLooting, boolean pRecentlyHit) {
+    protected void dropCustomDeathLoot(@NotNull DamageSource pSource, int pLooting, boolean pRecentlyHit) {
         super.dropCustomDeathLoot(pSource, pLooting, pRecentlyHit);
 
         if (!this.level().isClientSide) {
@@ -65,7 +63,7 @@ public class CatEntity extends Mob {
     }
 
     @Override
-    protected InteractionResult mobInteract(Player player, InteractionHand hand) {
+    protected @NotNull InteractionResult mobInteract(Player player, @NotNull InteractionHand hand) {
         ItemStack stack = player.getItemInHand(hand);
         Item item = stack.getItem();
         if (item.equals(Items.AIR)) {
@@ -78,15 +76,13 @@ public class CatEntity extends Mob {
         return super.mobInteract(player, hand);
     }
 
-    private static Entity spawnCat(Level level, double x, double y, double z) {
+    private static void spawnCat(Level level, double x, double y, double z) {
         EntityType<Cat> newCat = EntityType.CAT;
         Cat cat = newCat.create(level);
         if (cat != null) {
             cat.setVariant(Objects.requireNonNull(BuiltInRegistries.CAT_VARIANT.get(CatVariant.WHITE)));
             cat.setPos(x, y, z);
             level.addFreshEntity(cat);
-            return cat;
         }
-        return null;
     }
 }
